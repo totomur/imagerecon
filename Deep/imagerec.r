@@ -59,3 +59,33 @@ base$Numero = as.factor(base$Numero)
 
 head(base,1)
 
+
+# Gráfico de la variable a predecir usando plot
+plot(base$Numero, 
+     type="h",                    # Tipo de gráfico de líneas verticales (similar a barras)
+     main="Gráfico de ocurrencia", 
+     col="violet",               
+     xlab="Índice", 
+     ylab="Valor del Número")
+
+
+# Contar las ocurrencias de cada valor en base$Numero
+conteo <- table(base$Numero)
+conteo_df <-as.data.frame(conteo)
+names(conteo_df)[names(conteo_df)=="Var1"]="Numero"
+View(conteo_df)
+
+# Sumar las frecuencias
+total_suma <- sum(conteo_df["Freq"]) 
+
+# Comparar con el número total de filas de la base
+total_filas <- nrow(base)
+
+# Verificar si son iguales
+resultado <- suma_frecuencias == total_filas
+
+# Mostrar el resultado
+print(resultado)
+
+####Train-test
+library(carte)
